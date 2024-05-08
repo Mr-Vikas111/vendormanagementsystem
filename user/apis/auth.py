@@ -39,7 +39,6 @@ class LoginAPI(generics.CreateAPIView):
 
     """
     serializer_class = user_base_serializers.UserLoginSerializer
-    permission_classes = [IsAuthenticated]
     
     def create(self, request, *args, **kwargs):
         login_serializer = user_base_serializers.UserLoginSerializer(data=request.data)

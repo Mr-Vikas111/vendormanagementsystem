@@ -10,3 +10,9 @@ ACCESS_TOKEN='access_token'
 ACCESS='access'
 REFRESH='refresh'
 RESPONSE='response'
+
+# PURCHASE ORDER CHOICES KEYS
+
+PENDING='Pending'
+COMPLETED='Completed'
+CANCELLED='Cancelled'

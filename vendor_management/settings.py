@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -123,6 +124,36 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        }
+    },
+}
+
+""" ############ REST FRAMEWORK ############"""
+
+REST_FRAMEWORK = {
+    "COERCE_DECIMAL_TO_STRING": False,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES':(
+    'rest_framework.permissions.AllowAny',
+    ),
+    'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
+    
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=730),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=750),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
 
 
 # Internationalization
