@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
       # plugins URLS
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'), # swagger URL
-    path('api/',include('vendor.urls'))
+    path('api/',include('vendor.urls')),
+    path('auth/',include('user.urls'))
 ]

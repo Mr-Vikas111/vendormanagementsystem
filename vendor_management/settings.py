@@ -44,11 +44,16 @@ BUILT_IN_APPS = [
 
 THIRD_PARTY_APPS =[
     'drf_yasg',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 USER_DEFINE_APPS=[
 	'vendor',
-	'purchase_order'
+	'purchase_order',
+    'user',
+    'helper'
 ]
 
 INSTALLED_APPS = BUILT_IN_APPS + THIRD_PARTY_APPS + USER_DEFINE_APPS
@@ -81,6 +86,11 @@ TEMPLATES = [
         },
     },
 ]
+
+# custom User model
+
+
+AUTH_USER_MODEL = 'user.User'
 
 WSGI_APPLICATION = 'vendor_management.wsgi.application'
 
