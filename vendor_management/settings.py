@@ -42,12 +42,16 @@ BUILT_IN_APPS = [
     'django.contrib.staticfiles',
 ]
 
+THIRD_PARTY_APPS =[
+    'drf_yasg',
+]
+
 USER_DEFINE_APPS=[
 	'vendor',
 	'purchase_order'
 ]
 
-INSTALLED_APPS = BUILT_IN_APPS + USER_DEFINE_APPS
+INSTALLED_APPS = BUILT_IN_APPS + THIRD_PARTY_APPS + USER_DEFINE_APPS
 
 
 MIDDLEWARE = [
