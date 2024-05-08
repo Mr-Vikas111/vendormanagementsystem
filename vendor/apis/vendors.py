@@ -21,7 +21,7 @@ class VendorsList(APIView):
     def get(self, request, format=None): 
         queryset = vendor_utils.VendorFunctions.all_vendors()
         serializer =vendors_serializers.VendorsListSerializer(queryset, many=True) 
-        return Response(serializer.data) 
+        return Response({'status':True,'data':serializer.data},status=status.HTTP_200_OK) 
     
 
 
@@ -33,7 +33,7 @@ class VendorsList(APIView):
             serializer.save() 
             return Response(serializer.data,
                             status=status.HTTP_201_CREATED) 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+        return Response({'status':False,'error':serializer.errors}, status=status.HTTP_400_BAD_REQUEST) 
     
 
 class VendorsDetail(APIView): 
@@ -47,7 +47,7 @@ class VendorsDetail(APIView):
     def get(self, request, pk, format=None): 
         vendor = self.get_object(pk) 
         serializer = vendors_serializers.VendorsDetailSerializer(vendor) 
-        return Response(serializer.data) 
+        return Response({'status':True,'data':serializer.data},status=status.HTTP_200_OK) 
   
     
     @swagger_auto_schema(request_body=vendors_serializers.VendorsDetailSerializer, responses={200: 'OK',
@@ -57,11 +57,11 @@ class VendorsDetail(APIView):
         serializer = vendors_serializers.VendorsDetailSerializer(vendor, data=request.data) 
         if serializer.is_valid(): 
             serializer.save() 
-            return Response(serializer.data) 
+            return Response({'status':True,'data':serializer.data},status=status.HTTP_200_OK) 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
         
   
     def delete(self, request, pk, format=None): 
         vendor = self.get_object(pk) 
         vendor.delete() 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({'status':True,'msg':'Data Deleted'},status=status.HTTP_200_OK)
